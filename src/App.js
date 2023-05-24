@@ -1,3 +1,4 @@
+import Todo from "./components/Todo"
 
 function App(props) {
   return (
@@ -21,8 +22,8 @@ function App(props) {
         </button>
       </form>
       <div className="filters btn-group stack-exception">
-          <button type="button" className="btn toggle-btn" aria-pressed="true">
-              <span className="visually-hidden">Show </span>
+          <button type="button" className="btn toggle-btn" aria-pressed="true">{/*aria-pressed recurso a tecnologia assistida*/}
+              <span className="visually-hidden">Show </span>{/*visually-hidden também para usuarios sem contexto visual*/}
               <span>all </span>
               <span className="visually-hidden">tasks</span>
           </button>
@@ -33,70 +34,23 @@ function App(props) {
           </button>
           <button type="button" className="btn toggle-btn" aria-pressed="false">
               <span className="visually-hidden">Show </span>
-              <span>Cpmpleted </span>
+              <span>Completed </span>
               <span className="visually-hidden">tasks</span>
           </button>
       </div>
-        <h2 id="list-heading">3 taskas remaining</h2>
+        <h2 id="list-heading">3 tasks remaining</h2>
         <ul
-          role="list"
+          role="list" /*ajuda a tecnologia assistiva a explicar que tipo de elemento uma tag representa*/
           className="todo-list stack-large stack-exception"
-          aria-labelledby="list-heading">
-            <li className="todo stack-small">
-              <div className="c-cb">
-                <input id="todo-0" type="checkbox" defaultChecked="{true}" />
-                  <label className="todo-label" htmlFor="todo-0">
-                    Eat
-                  </label>
-              </div>
-              <div className="btn-group">
-                  <button type="button" className="btn">
-                    Edit <span className="visually-hidden">Eat</span>
-                  </button>
-                  <button type="button" className="btn btn_danger">
-                    Delete <span className="visually-hidden">Eat</span>
-                  </button>
-              </div>
-            </li>
-            <li className="todo stack-small">
-              <div className="c-cb">
-                <input id="todo-1" type="checkbox" />
-                <label className="todo-label" htmlFor="todo-1">
-                  Sleep
-                </label>
-              </div>
-              <div className="btn-group">
-                  <button type="button" className="btn">
-                    Edit
-                  </button>
-                  <button type="button" className="btn btn__danger">
-                    Delete <span className="visually-hidden">Sleep</span>
-                  </button>
-              </div>
-            </li>
-            <li className="todo stack-small">
-              <div className="c-cb">
-                <input className="todo-label" type="checkbox" />
-                <label className="todo-label" htmlFor="todo-2">
-                  Repeat
-                </label>
-              </div>
-              <div className="btn-group">
-                <button type="button" className="btn">
-                  Edit <span className="visually-hidden">Repeat</span>
-                </button>
-                <button type="button" className="btn btn__danger">
-                    Delete <span className="visually-hidden">Repeat</span>
-                </button>
-              </div>
-            </li>
+          aria-labelledby="list-heading"> {/*descreve o propósito da lista abaixo dele*/}
+            <Todo name="Eat" completed={true} id="todo-0" />{/*o name define o nome dados ao label do meu componente*/}
+            <Todo name="Sleep" completed={false} id="todo-1" /> {/*o completed trará a primeira checkbox peenchida, as demais não*/}
+            <Todo name="Repeat" completed={false} id="todo-2" />
         </ul>
     </div>
   );
 }
 
 export default App;
-
-
 
 
