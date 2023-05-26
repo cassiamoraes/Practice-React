@@ -21,7 +21,7 @@ As a user, I can
 
 The app will look something like this:
 
-![](./public/appDesktop.PNG)
+![](./public/appDesktop_.PNG)
 
 
 In my code, I commented all changes for remember in the future.
