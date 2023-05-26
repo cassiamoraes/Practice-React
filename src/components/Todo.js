@@ -3,8 +3,7 @@ import React, { useState } from "react";
 function Todo(props){//aqui minha Todo recebe um props
     const[isEditing, setEditing] = useState(false)
     const[newName, setNewName] = useState("")
-    const[filter, setFilter] = useState("All")
-
+  
     //função define novo nome
     function handleChange(e){
       setNewName(e.target.value)
@@ -33,7 +32,7 @@ function Todo(props){//aqui minha Todo recebe um props
             Cancel
             <span className="visually-hidden">renaming {props.name}</span>
           </button>
-          <button type="submit" className="btn btn_primary todo-edit">
+          <button type="submit" className="btn btn__primary todo-edit">
             Save
             <span className="visually-hidden">new name for {props.name}</span>
           </button>
@@ -47,7 +46,7 @@ function Todo(props){//aqui minha Todo recebe um props
         <div className="c-cb">
         <input id={props.id} 
             type="checkbox" 
-            defaultChecked="{props.completed}" 
+            defaultChecked={props.completed} 
             onChange={()=>
             props.toggleTaskCompleted(props.id)} //função anonima para chamar o toggleTask que criamos no app
          />{/*aqui o props vai receber o completed de acordo com o que foi defindo no App.js */}
@@ -59,7 +58,7 @@ function Todo(props){//aqui minha Todo recebe um props
               <button type="button" className="btn" onClick={()=>setEditing(true)}>
                   Edit <span className="visually-hidden">{props.name}</span>
               </button>
-              <button type="button" className="btn btn_danger" onClick={()=>props.deleteTask(props.id)}>
+              <button type="button" className="btn btn__danger" onClick={()=>props.deleteTask(props.id)}>
                   Delete <span className="visually-hidden">{props.name}</span>
               </button>
         </div>
