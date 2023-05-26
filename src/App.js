@@ -4,6 +4,7 @@ import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
 import {nanoid} from "nanoid"
 
+//filtros do formulario (todas as tarefas, as ativas e as completas)
 const FILTER_MAP = {//funções que usaremos p/ filtrar os dados dos tasks array 
   All: () => true, //mostra todas as tarefas então retorna true para todas
   Active: (task) => !task.completed, //mostra as tarefas cujo completed prop é false
@@ -16,6 +17,7 @@ const FILTER_NAMES = Object.keys(FILTER_MAP)
 function App(props) {
 
   const [tasks, setTasks] = useState(props.tasks)//armazenaremos as  tarefas no estado
+  const [filter, setFilter] = useState("All")
 
   //basicamente a função abaixo converte os dados informados para name em um objeto do qual podemos manipular
   function addTask(name){//não podemos simplismente passar uma string(name) para essa função, pq tasks são elementos
@@ -59,7 +61,9 @@ function App(props) {
 
   //Lembre-se de que cada tarefa que mapeamos tem as propriedades id, name completed que queremos passar para nosso <Todo />componente
   //**error - não esquecer de instalar o nanoid para que os ids mudem conforme as tarefas sejam adicionadas
-  const taskList = tasks.map((task) => (
+  const taskList = tasks
+    .filter(FILTER_MAP[filter])//antes de mapear o estado da tarefa, fazemos o filtro do estado p/ mostra o que queremos
+    .map((task) =>(
     <Todo 
       id={task.id} 
       name={task.name} 
@@ -68,6 +72,16 @@ function App(props) {
       toggleTaskCompleted={toggleTaskCompleted}
       deleteTask={deleteTask}
       editTask={editTask}
+    />
+  ))
+
+  //filterbutton é um componente do react que cria um menu suspenso
+  const filterList = FILTER_NAMES.map((name)=>(//const para mapear nosso array de nomes e retornar um filterbutton componente
+    <FilterButton 
+      key={name} 
+      name={name}
+      isPressed={name === filter}
+      setFilter={setFilter} 
     />
   ))
 
@@ -81,9 +95,7 @@ function App(props) {
       <h1>TodoMatic</h1>
       <Form addTask={addTask}/> {/*chama a função de addTask criada acima*/}
       <div className="filters btn-group stack-exception">
-        <FilterButton />
-        <FilterButton />
-        <FilterButton />
+        {filterList} {/*aqui chamamos o filterButton*/}
       </div>
       
         <h2 id="list-heading">{headingText}</h2>
