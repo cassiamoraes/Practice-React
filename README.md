@@ -18,3 +18,10 @@ As a user, I can
 - delete any task, using the mouse or keyboard.
 - edit any task, using the mouse or keyboard.
 - view a specific subset of tasks: All tasks, only the active task, or only the completed tasks.
+
+The app will look something like this:
+
+![](./public/appDesktop.PNG)
+
+
+In my code, I commented all changes for remember in the future.
